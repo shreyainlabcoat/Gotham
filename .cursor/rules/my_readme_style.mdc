@@ -1,0 +1,78 @@
+---
+description: README formatting style — header hierarchy, required sections, API tables, Mermaid, and graduate-student tone
+globs: "**/README*.md"
+alwaysApply: false
+---
+
+# README Style (my_readme_style)
+
+When writing or editing README files in this project, follow this formatting style exactly.
+
+## Header Hierarchy
+
+- **Level 1 (`#`)**: Single main title — short, descriptive project/script name (e.g. `# OpenAQ Latest Measurements Query`). No extra `#` levels above this.
+- **Level 2 (`##`)**: Major sections only. Use these for: **Overview**, **API Details**, **Data Structure**, **Mermaid Diagram**, **Usage Instructions**, **References** (or equivalent). No emoji or icons in the reference style; if you use icons for sections elsewhere, use them consistently for the same section types.
+- **Level 3 (`###`)**: Subsections under a major section — e.g. **Headers**, **Query Parameters**, **Top-level response**, **Each object in `results`**, **Example response (simplified)**, and numbered steps under Usage (**1. Prerequisites**, **2. Install dependencies**, etc.).
+- Do not skip levels (e.g. do not go from `##` to `####`). Use `---` (horizontal rule) between major sections for visual separation.
+
+## Required Sections
+
+Every README that documents a script or API must include:
+
+1. **Overview**  
+   - Brief explanation of what the script does.  
+   - Use a short intro paragraph, then a bullet list of key behaviors (bold terms for important concepts).  
+   - One sentence on error handling if relevant.
+
+2. **API Details**  
+   - Present endpoint info in tables.  
+   - Include: **Base URL**, **Endpoint**, **Full URL**, **Method**.  
+   - Subsections: **Headers** (table: Header | Description) and **Query Parameters** (table: Parameter | Type | Default | Description).  
+   - Mention path parameters in a short line under the tables if applicable (e.g. `**Path parameter:** …`).
+
+3. **Mermaid Diagram**  
+   - A section titled **Mermaid Diagram** with a short lead-in sentence (e.g. “The following sequence diagram shows…”).  
+   - At least one fenced **Mermaid** block (` ```mermaid ` … ` ``` `) that is valid and renderable (sequence or flowchart).  
+   - Optional: a second diagram (e.g. flowchart) with a short label (e.g. “Flowchart version (high-level steps):”) before the block.
+
+Additional sections (Data Structure, Usage Instructions, References) should follow the same hierarchy and tone.
+
+## Data Structure (when applicable)
+
+- Describe JSON/response shape with **Top-level** and **per-item** subsections.  
+- Use tables: **Field | Type | Description**.  
+- Include an **Example response (simplified)** subsection with a valid JSON code block.
+
+## Usage Instructions (when applicable)
+
+- Use numbered **###** subsections (e.g. **### 1. Prerequisites**, **### 2. Install dependencies**).  
+- Prerequisites as a short bullet list (bold terms, optional link with “Get one from [Name](url)”).  
+- Steps: short intro line, then fenced code blocks for commands (e.g. `bash`, `env`).  
+- Include an **Expected output** subsection with a plain or minimal code block showing sample output and one sentence on failure/empty cases.
+
+## Tone and Voice
+
+- **Professional graduate-student voice**: clear, precise, and instructional.  
+- Use full sentences. Prefer active voice (“The script fetches…”, “Create a `.env` file…”).  
+- Be concise but complete: no casual slang; explain enough for someone unfamiliar to follow.  
+- For optional or script-specific details, say so (e.g. “not used in the script”, “configurable via the `limit` parameter”).  
+- Use **bold** for important terms and `code` for identifiers, endpoints, and literal values.
+
+## Icons / Emoji
+
+- The reference style uses **no icons or emoji** in section headers.  
+- If you adopt icons or emoji for certain sections (e.g. 📖 Overview, 🔗 API Details), use them **consistently** for the same section type across the README and do not mix decorated and plain headers arbitrarily.
+
+## Mermaid Rules
+
+- Ensure Mermaid code is valid (correct keyword and indentation; no unsupported syntax).  
+- Prefer `sequenceDiagram` for API/script interaction; use `flowchart LR` or `flowchart TD` for step-by-step flows when useful.  
+- Use descriptive participant and step labels so the diagram stands alone.
+
+## Checklist Before Submitting a README
+
+- [ ] One `#` title at the top; `##` for major sections; `###` for subsections; `---` between major sections.  
+- [ ] **Overview**, **API Details** (with parameters table), and **Mermaid Diagram** (with at least one valid block) are present.  
+- [ ] Tables used for API and data-structure details; code blocks for examples and commands.  
+- [ ] Tone is professional and graduate-student appropriate; bold and code formatting used consistently.  
+- [ ] If icons/emoji are used, they are consistent by section type.
