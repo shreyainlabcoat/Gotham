@@ -12,4 +12,4 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # 5. The startup command your lab encouraged you to use!
-CMD ["streamlit", "run", "gotham_ai_report.py", "--server.port=8080", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "gotham_ai_report.py", "--server.port=8080", "--server.address=0.0.0.0", "--server.enableCORS=false", "--server.enableXsrfProtection=false"]
