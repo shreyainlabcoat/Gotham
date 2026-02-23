@@ -186,7 +186,7 @@ def fetch_air_quality_data(lat: float, lon: float, radius_km: int, pollutant_key
 def render_google_map(df: pd.DataFrame, center_lat: float, center_lon: float):
     if df.empty or not GOOGLE_MAPS_API_KEY: return
     markers_js = "".join([
-        f"{{lat: {r['latitude']}, lng: {r['longitude']}, title: {json.dumps(str(r['Location']))}, val: {json.dumps(f"{r['Value']} {r['Unit']}")} }},\n"
+       f"""{{lat: {r['latitude']}, lng: {r['longitude']}, title: {json.dumps(str(r['Location']))}, val: {json.dumps(f"{r['Value']} {r['Unit']}")} }},\n"""
         for _, r in df.iterrows() if not pd.isna(r['latitude'])
     ])
 
