@@ -1,0 +1,28 @@
+name: Deploy to Posit Connect
+
+on:
+  push:
+    branches: [main] # Runs every time you push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install rsconnect-python
+        run: pip install rsconnect-python
+
+      - name: Deploy to Connect
+        run: |
+          rsconnect deploy streamlit \
+            --server ${{ secrets.CONNECT_SERVER }} \
+            --api-key ${{ secrets.CONNECT_API_KEY }} \
+            --entrypoint 03_ollama/gotham_ai_report.py \
+            ./03_ollama/
