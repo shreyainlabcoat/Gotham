@@ -223,8 +223,8 @@ def render_sidebar() -> Tuple[float, float, int, str, str]:
     
     st.sidebar.markdown("---")
     st.sidebar.title("🧠 AI Engine")
-   ai_choice = st.sidebar.radio("Select Health Analysis Model:", ["None (Static Rules)", "OpenAI (GPT-4o)"])
-
+    ai_choice = st.sidebar.radio("Select Health Analysis Model:", ["None (Static Rules)", "OpenAI (GPT-4o)"])
+    
 def render_dashboard(df: pd.DataFrame, pollutant_key: str, lat: float, lon: float, ai_choice: str):
     config = get_pollutant_config()
     unit = config.get(pollutant_key, {}).get("unit", "")
