@@ -222,9 +222,10 @@ def render_sidebar() -> Tuple[float, float, int, str, str]:
     pollutant = st.sidebar.selectbox("Pollutant Layer", list(get_pollutant_config().keys()))
     
     st.sidebar.markdown("---")
-    st.sidebar.title("🧠 AI Engine")
+   st.sidebar.title("🧠 AI Engine")
     ai_choice = st.sidebar.radio("Select Health Analysis Model:", ["None (Static Rules)", "OpenAI (GPT-4o)"])
-    
+    return lat, lon, radius, pollutant, ai_choice
+
 def render_dashboard(df: pd.DataFrame, pollutant_key: str, lat: float, lon: float, ai_choice: str):
     config = get_pollutant_config()
     unit = config.get(pollutant_key, {}).get("unit", "")
