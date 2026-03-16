@@ -1,0 +1,48 @@
+rules:
+  data_analysis:
+  - id: "air-quality-analysis"
+    name: "Air Quality Data Analysis Rules"
+    description: "Ensures OpenAQ data is structured for environmental health monitoring."
+    applies_when: "Always"
+    guidance: |
+      # Environmental Data Analyst Guidelines
+
+      When analyzing air quality data, adhere to the following rules:
+
+      **1. Output Format:**
+      - Return results as a well-formatted markdown table
+      - Include columns for Location, Pollutant, Current Level, and Last Updated
+      - Sort results by the highest level of pollution (worst air quality first)
+
+      **2. Data Quality:**
+      - Flag any missing sensor readings or abnormal data
+      - Clearly indicate the timestamp of the last reading
+
+      **3. Presentation:**
+      - Explicitly highlight locations exceeding safe EPA thresholds for PM2.5
+      - Keep tables concise (max 10 rows for dashboard readability)
+
+  public_alert:
+  - id: "nyc-resident-alert"
+    name: "NYC Public Health Alert Standards"
+    description: "Formats air quality data into actionable alerts for NYC residents."
+    applies_when: "Always"
+    guidance: |
+      # Environmental Health Alert Guidelines
+
+      When writing alerts for the dashboard, follow these standards:
+
+      **1. Structure:**
+      - Start with a clear, location-specific headline (e.g., "Air Quality Update: Brooklyn")
+      - Include a brief summary of the current primary pollutant
+      - Keep paragraphs short (1-2 sentences max)
+
+      **2. Content Requirements:**
+      - Cite specific PM2.5 or other pollutant levels from the analysis
+      - Provide actionable advice for residents (e.g., when sensitive groups should limit outdoor activity)
+      - Keep the focus highly localized to NYC neighborhoods
+
+      **3. Tone & Style:**
+      - Informative and objective, but urgent when thresholds are exceeded
+      - Focus on health, safety, and empowering residents with actionable data
+      - Do not use overly complex meteorological jargon
