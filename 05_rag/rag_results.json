@@ -1,0 +1,35 @@
+[
+  {
+    "user_query": "What is RAG and how does it work?",
+    "retrieval": {
+      "query": "What is RAG and how does it work?",
+      "document": "sample.txt",
+      "matching_content": "Retrieval-Augmented Generation (RAG) is a powerful technique that combines information retrieval with generative language models. RAG works by first retrieving relevant documents from a knowledge base based on a user query, then passing those documents to a language model to generate an answer. The main components of a RAG system are: the retrieval component, the ranking component, and the generation component. Large Language Models (LLMs) like GPT and Ollama can be used as the generative component in RAG systems. The retrieval step in RAG uses techniques like BM25, TF-IDF, or semantic search with embeddings to find relevant documents. System prompts are crucial in RAG workflows as they instruct the LLM on how to process and format the retrieved information. Fine-tuning a language model on domain-specific data can improve its performance on specialized RAG tasks. The effectiveness of a RAG system depends on both the quality of the retrieved documents and the capability of the generative model. Knowledge graphs can be used to structure information for more intelligent retrieval in RAG systems. Multi-hop reasoning in RAG involves retrieving and reasoning over multiple documents to answer complex questions.",
+      "num_results": 10
+    },
+    "llm_response": "Based on the retrieved documents, I can provide the following information about your question: \"What is RAG and how does it work?\"\n\nKey findings from the knowledge base:\n\n- Retrieval-Augmented Generation (RAG) is a powerful technique that combines information retrieval with generative language models.\n- RAG works by first retrieving relevant documents from a knowledge base based on a user query, then passing those documents to a language model to generate an answer.\n- The main components of a RAG system are: the retrieval component, the ranking component, and the generation component.\n\nNote: This response is synthesized from the retrieved documents as the local LLM model cannot run due to memory constraints (requires 4GB, system has ~3.5GB available). In production, the Ollama LLM would generate a more comprehensive answer using these retrieved materials.",
+    "timestamp": "2026-03-22 22:41:58"
+  },
+  {
+    "user_query": "Tell me about supervised learning",
+    "retrieval": {
+      "query": "Tell me about supervised learning",
+      "document": "sample.txt",
+      "matching_content": "Supervised learning is a machine learning paradigm where the model learns from labeled training data to make predictions on new data. Unsupervised learning involves finding patterns in unlabeled data without explicit guidance on what to look for. Knowledge graphs can be used to structure information for more intelligent retrieval in RAG systems.",
+      "num_results": 3
+    },
+    "llm_response": "Based on the retrieved documents, I can provide the following information about your question: \"Tell me about supervised learning\"\n\nKey findings from the knowledge base:\n\n- Supervised learning is a machine learning paradigm where the model learns from labeled training data to make predictions on new data.\n- Unsupervised learning involves finding patterns in unlabeled data without explicit guidance on what to look for.\n- Knowledge graphs can be used to structure information for more intelligent retrieval in RAG systems.\n\nNote: This response is synthesized from the retrieved documents as the local LLM model cannot run due to memory constraints (requires 4GB, system has ~3.5GB available). In production, the Ollama LLM would generate a more comprehensive answer using these retrieved materials.",
+    "timestamp": "2026-03-22 22:42:04"
+  },
+  {
+    "user_query": "How does Ollama work with RAG systems?",
+    "retrieval": {
+      "query": "How does Ollama work with RAG systems?",
+      "document": "sample.txt",
+      "matching_content": "Large Language Models (LLMs) like GPT and Ollama can be used as the generative component in RAG systems. Knowledge graphs can be used to structure information for more intelligent retrieval in RAG systems. Chunking documents into smaller segments helps improve retrieval relevance in RAG systems. The coherence and factuality of generated responses in RAG systems depend on both the system prompt and the quality of retrieved content. Stream processing of LLM responses in RAG systems can provide faster user feedback and reduce latency. Retrieval-Augmented Generation (RAG) is a powerful technique that combines information retrieval with generative language models. RAG works by first retrieving relevant documents from a knowledge base based on a user query, then passing those documents to a language model to generate an answer. The main components of a RAG system are: the retrieval component, the ranking component, and the generation component. The retrieval step in RAG uses techniques like BM25, TF-IDF, or semantic search with embeddings to find relevant documents. System prompts are crucial in RAG workflows as they instruct the LLM on how to process and format the retrieved information.",
+      "num_results": 10
+    },
+    "llm_response": "Based on the retrieved documents, I can provide the following information about your question: \"How does Ollama work with RAG systems?\"\n\nKey findings from the knowledge base:\n\n- Large Language Models (LLMs) like GPT and Ollama can be used as the generative component in RAG systems.\n- Knowledge graphs can be used to structure information for more intelligent retrieval in RAG systems.\n- Chunking documents into smaller segments helps improve retrieval relevance in RAG systems.\n\nNote: This response is synthesized from the retrieved documents as the local LLM model cannot run due to memory constraints (requires 4GB, system has ~3.5GB available). In production, the Ollama LLM would generate a more comprehensive answer using these retrieved materials.",
+    "timestamp": "2026-03-22 22:42:10"
+  }
+]
