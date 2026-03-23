@@ -1,0 +1,41 @@
+Air quality refers to the measurement of pollutants in the atmosphere that can affect human health and the environment. Understanding air quality is essential for making safe commuting decisions in urban areas.
+
+PM2.5 refers to fine particulate matter with a diameter of 2.5 micrometers or smaller. These particles can penetrate deep into the lungs and enter the bloodstream, causing respiratory and cardiovascular problems.
+
+Exposure to PM2.5 is linked to increased risks of asthma attacks, bronchitis, emphysema, and other chronic respiratory diseases. Children, elderly people, and those with pre-existing conditions are most vulnerable.
+
+Ozone is a gas formed when nitrogen oxides and volatile organic compounds react in the presence of sunlight. Ground-level ozone is a major component of smog and is harmful to human health.
+
+Ozone exposure can cause reduced lung function, increased airway reactivity, and respiratory symptoms such as coughing and shortness of breath. Peak ozone levels typically occur in the afternoon during warm, sunny days.
+
+Nitrogen dioxide is an air pollutant that contributes to ground-level ozone and particulate matter formation. It is primarily emitted from vehicle exhaust and power plants.
+
+Sulfur dioxide is a gas produced from the burning of fossil fuels containing sulfur. It can cause respiratory problems and is a precursor to acid rain.
+
+Children are particularly susceptible to air pollution due to their developing lungs and higher breathing rates relative to their body size. They spend more time outdoors, increasing exposure.
+
+People with asthma should monitor air quality forecasts and avoid outdoor exertion on high pollution days. Using rescue inhalers before strenuous activity may be necessary.
+
+Cyclists and runners in urban areas face higher exposure to pollution because their increased breathing rate and deeper lung penetration increase pollutant intake.
+
+Wearing N95 or KN95 masks can filter out 95% of airborne particles and is recommended in areas with high PM2.5 levels, especially for vulnerable populations.
+
+Air purifiers with HEPA filters can reduce indoor air pollution and are particularly useful for those with respiratory conditions. Running them in bedroom and living spaces provides protection.
+
+Early morning hours typically have lower ozone levels, making them ideal for outdoor exercise in urban areas. Ozone increases during midday and afternoon hours.
+
+Staying hydrated and maintaining good respiratory health through exercise on clean air days helps build lung capacity and resilience against pollution exposure.
+
+Indoor activities like swimming, gym workouts, and sports facilities provide alternatives on high pollution days without sacrificing physical activity.
+
+Air quality indices rate pollution from 0-500, where 0-50 is good, 51-100 is moderate, 101-150 is unhealthy for sensitive groups, 151-200 is unhealthy, 201-300 is very unhealthy, and 301+ is hazardous.
+
+Real-time air quality monitoring helps commuters make informed decisions about outdoor activities and route planning through less polluted areas.
+
+Commuters can reduce personal exposure by choosing routes with less traffic congestion, which typically have lower pollution levels than busy highways.
+
+Trees and green spaces improve air quality by absorbing pollutants and producing oxygen. Parks provide cleaner air for exercise compared to busy streets.
+
+Vehicle emissions are the primary source of urban air pollution in cities. Electric vehicles and public transportation produce fewer emissions than personal cars.
+
+Long-term exposure to air pollution increases risks of cardiovascular disease, stroke, heart attacks, and premature mortality. Even moderate pollution levels have cumulative health impacts.

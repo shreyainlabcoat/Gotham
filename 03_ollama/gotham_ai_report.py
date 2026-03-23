@@ -8,6 +8,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 from dotenv import load_dotenv
 from openai import OpenAI
+from rag_health_insights import get_rag_health_insights, format_rag_response
 
 # -----------------------------------------------------------------------------
 # 1. SETUP & CONFIGURATION
@@ -223,7 +224,10 @@ def render_sidebar() -> Tuple[float, float, int, str, str]:
     
     st.sidebar.markdown("---")
     st.sidebar.title("🧠 AI Engine")
-    ai_choice = st.sidebar.radio("Select Health Analysis Model:", ["None (Static Rules)", "OpenAI (GPT-4o)"])
+    ai_choice = st.sidebar.radio("Select Health Analysis Model:", 
+                                  ["None (Static Rules)", 
+                                   "OpenAI (GPT-4o)",
+                                   "RAG + Ollama (Knowledge Base)"])
     
     return lat, lon, radius, pollutant, ai_choice
 
@@ -244,7 +248,7 @@ def render_dashboard(df: pd.DataFrame, pollutant_key: str, lat: float, lon: floa
     if ai_choice == "None (Static Rules)":
         advice_text, css_class = get_commuter_advice(pollutant_key, df["Value"].mean())
         st.markdown(f'<div class="advice-box {css_class}"><h3 style="margin-top:0;">🚦 Commuter Guide</h3><p>{advice_text}</p></div>', unsafe_allow_html=True)
-    else:
+    elif ai_choice == "OpenAI (GPT-4o)":
         with st.spinner(f"Querying {ai_choice} for JSON structured insights..."):
             ai_response_str = get_ai_insights(df, pollutant_key, ai_choice)
         
@@ -279,11 +283,30 @@ def render_dashboard(df: pd.DataFrame, pollutant_key: str, lat: float, lon: floa
             st.write("Raw Output:", ai_response_str)
 
     st.write("") 
-    tab_map, tab_data = st.tabs(["🗺️ Live Map", "📊 Data Table"])
+    tab_map, tab_data, tab_rag = st.tabs(["🗺️ Live Map", "📊 Data Table", "🧬 RAG Analysis"])
+    
     with tab_map:
         if GOOGLE_MAPS_API_KEY: render_google_map(df, lat, lon)
         else: st.map(df, width='stretch')
-    with tab_data: st.dataframe(df[["Location", "Value", "Unit", "Time"]], width='stretch')
+    
+    with tab_data: 
+        st.dataframe(df[["Location", "Value", "Unit", "Time"]], width='stretch')
+    
+    with tab_rag:
+        if ai_choice == "RAG + Ollama (Knowledge Base)":
+            st.subheader("🧬 RAG-Powered Health Analysis")
+            st.markdown("*Retrieval-Augmented Generation: Combining knowledge base with current air quality data*")
+            
+            with st.spinner("Retrieving health knowledge and analyzing..."):
+                kb_path = os.path.join(os.path.dirname(__file__), "air_quality_knowledge_base.txt")
+                rag_result = get_rag_health_insights(df, pollutant_key, kb_path, "Ollama")
+            
+            st.markdown(f'<div class="advice-box advice-ai"><h3 style="margin-top:0;">💡 Knowledge-Based Recommendations</h3></div>', unsafe_allow_html=True)
+            
+            formatted_response = format_rag_response(rag_result)
+            st.markdown(formatted_response)
+        else:
+            st.info("💡 Select 'RAG + Ollama (Knowledge Base)' from the sidebar to enable RAG analysis.")
 
 # -----------------------------------------------------------------------------
 # 5. MAIN EXECUTION
