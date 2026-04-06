@@ -30,33 +30,83 @@ def configure_page() -> None:
     st.markdown(
         """
         <style>
-            .stApp { background: radial-gradient(circle at top left, #202433 0, #050609 55%); }
+            /* ── Base ── */
+            .stApp { background: radial-gradient(135deg, #1a1f35 0%, #050609 60%); }
             h1, h2, h3, h4, h5, h6, p, li, span, div, label { color: #e0e0e0 !important; }
-            [data-testid="stMetricLabel"] { color: #afb4c6 !important; }
-            [data-testid="stMetricValue"] { color: #ffffff !important; }
+
+            /* ── Sidebar ── */
             section[data-testid="stSidebar"] {
-                background-color: #0f131c;
-                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                background: linear-gradient(180deg, #0b0f1a 0%, #0f1520 100%);
+                border-right: 1px solid rgba(100, 120, 200, 0.15);
             }
+            section[data-testid="stSidebar"] .stRadio label { font-size: 0.9rem; }
+
+            /* ── Metric cards ── */
             .metric-card {
-                padding: 1.2rem; border-radius: 10px; background: rgba(30, 35, 50, 0.6);
-                border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1rem;
+                padding: 1.2rem 1.4rem; border-radius: 12px;
+                background: rgba(25, 30, 50, 0.7);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                margin-bottom: 0.8rem;
+                transition: border-color 0.2s;
             }
-            .metric-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: #a0a5b9 !important; }
-            .metric-value { font-size: 2rem; font-weight: 700; color: #ffffff !important; }
+            .metric-card:hover { border-color: rgba(120, 140, 255, 0.3); }
+            .metric-label {
+                font-size: 0.75rem; text-transform: uppercase;
+                letter-spacing: 0.12em; color: #7a82a8 !important; margin-bottom: 0.4rem;
+            }
+            .metric-value { font-size: 1.9rem; font-weight: 700; color: #ffffff !important; line-height: 1.1; }
+            .metric-sub  { font-size: 0.78rem; color: #5a6080 !important; margin-top: 0.3rem; }
+
+            /* ── Advice boxes ── */
             .advice-box {
-                padding: 1.5rem; border-radius: 8px; background: rgba(255, 255, 255, 0.05);
-                border-left: 5px solid; margin-top: 1rem;
+                padding: 1.4rem 1.6rem; border-radius: 10px;
+                background: rgba(255, 255, 255, 0.04);
+                border-left: 4px solid; margin-top: 1rem;
             }
-            .advice-green { border-color: #00cc66; }
-            .advice-yellow { border-color: #ffcc00; }
-            .advice-red { border-color: #ff3333; }
-            .advice-ai { border-color: #9933ff; }
-            
-            /* Custom Table Styling for JSON Output */
-            .ai-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-            .ai-table th { text-align: left; padding: 12px; background: rgba(0,0,0,0.2); width: 20%; border-bottom: 1px solid #444; }
-            .ai-table td { padding: 12px; border-bottom: 1px solid #444; }
+            .advice-green  { border-color: #00d97e; background: rgba(0, 217, 126, 0.06); }
+            .advice-yellow { border-color: #f5c400; background: rgba(245, 196, 0, 0.06); }
+            .advice-red    { border-color: #ff4d4d; background: rgba(255, 77, 77, 0.06); }
+            .advice-ai     { border-color: #7c5cfc; background: rgba(124, 92, 252, 0.06); }
+
+            /* ── Hero header ── */
+            .hero-header {
+                padding: 1.6rem 0 1.2rem 0;
+                border-bottom: 1px solid rgba(255,255,255,0.07);
+                margin-bottom: 1.6rem;
+            }
+            .hero-title { font-size: 2.2rem !important; font-weight: 800 !important; letter-spacing: -0.02em; margin: 0 !important; }
+            .hero-sub   { color: #5a6488 !important; font-size: 0.95rem; margin-top: 0.3rem; }
+
+            /* ── AI table ── */
+            .ai-table { width: 100%; border-collapse: collapse; margin-top: 0.8rem; font-size: 0.92rem; }
+            .ai-table th { text-align: left; padding: 10px 14px; background: rgba(0,0,0,0.25); width: 22%; border-bottom: 1px solid #2e3450; color: #8891b5 !important; }
+            .ai-table td { padding: 10px 14px; border-bottom: 1px solid #1e2438; }
+            .ai-table tr:last-child td, .ai-table tr:last-child th { border-bottom: none; }
+
+            /* ── Badge ── */
+            .badge {
+                display: inline-block; padding: 2px 10px; border-radius: 20px;
+                font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em;
+            }
+            .badge-green  { background: rgba(0,217,126,0.15); color: #00d97e !important; }
+            .badge-yellow { background: rgba(245,196,0,0.15);  color: #f5c400 !important; }
+            .badge-red    { background: rgba(255,77,77,0.15);   color: #ff4d4d !important; }
+
+            /* ── Report card ── */
+            .report-card {
+                padding: 1.4rem 1.6rem; border-radius: 12px;
+                background: rgba(20, 25, 45, 0.8);
+                border: 1px solid rgba(255,255,255,0.08);
+                margin-bottom: 1rem;
+            }
+            .report-card h4 { margin: 0 0 0.6rem 0; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: #6a73a0 !important; }
+            .report-card p  { margin: 0; font-size: 1rem; line-height: 1.6; }
+            .report-risk    { font-size: 1.6rem; font-weight: 800; }
+            .risk-high      { color: #ff4d4d !important; }
+            .risk-moderate  { color: #f5c400 !important; }
+            .risk-low       { color: #00d97e !important; }
+            .location-row { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
+            .location-row:last-child { border-bottom: none; }
         </style>
         """,
         unsafe_allow_html=True,
@@ -216,97 +266,253 @@ def render_google_map(df: pd.DataFrame, center_lat: float, center_lon: float):
 # -----------------------------------------------------------------------------
 
 def render_sidebar() -> Tuple[float, float, int, str, str]:
-    st.sidebar.title("Commuter Settings")
-    lat = st.sidebar.number_input("Latitude", value=40.7128, format="%.4f")
-    lon = st.sidebar.number_input("Longitude", value=-74.0060, format="%.4f")
+    st.sidebar.markdown("### 📍 Location")
+    col1, col2 = st.sidebar.columns(2)
+    lat = col1.number_input("Latitude",  value=40.7128, format="%.4f")
+    lon = col2.number_input("Longitude", value=-74.0060, format="%.4f")
+
+    st.sidebar.markdown("### 🔬 Sensor Settings")
     radius = st.sidebar.slider("Search Radius (km)", 1, 50, 10)
     pollutant = st.sidebar.selectbox("Pollutant Layer", list(get_pollutant_config().keys()))
-    
+
     st.sidebar.markdown("---")
-    st.sidebar.title("🧠 AI Engine")
-    ai_choice = st.sidebar.radio("Select Health Analysis Model:", 
-                                  ["None (Static Rules)", 
-                                   "OpenAI (GPT-4o)",
-                                   "RAG + Ollama (Knowledge Base)"])
-    
+    st.sidebar.markdown("### 🧠 AI Engine")
+    ai_choice = st.sidebar.radio(
+        "Health Analysis Model",
+        ["Instant Check", "GPT-4o Analysis", "Research Mode"],
+        help="Instant Check: rule-based, no API key needed.\nGPT-4o Analysis: requires OpenAI key.\nResearch Mode: uses local knowledge base."
+    )
+
+    st.sidebar.markdown("---")
+    with st.sidebar.expander("ℹ️ How to use"):
+        st.markdown(
+            "1. Set your **location** (default: Manhattan).\n"
+            "2. Adjust the **search radius** to find nearby sensors.\n"
+            "3. Choose a **pollutant** to monitor.\n"
+            "4. Pick an **AI engine** for health recommendations."
+        )
+
     return lat, lon, radius, pollutant, ai_choice
+
+def _risk_badge(pollutant_key: str, value: float) -> str:
+    """Return an HTML badge with color-coded risk label."""
+    _, css = get_commuter_advice(pollutant_key, value)
+    label_map = {"advice-green": ("Low", "green"), "advice-yellow": ("Moderate", "yellow"), "advice-red": ("High", "red")}
+    label, color = label_map.get(css, ("Unknown", "yellow"))
+    return f'<span class="badge badge-{color}">{label} Risk</span>'
+
+
+_REPORT_THRESHOLDS = {"PM2.5": (12.0, 35.4), "O3": (54.0, 70.0), "NO2": (53.0, 53.0)}
+_REPORT_ACTIONS = {
+    "High":     ["Wear an N95/KN95 mask outdoors.", "Avoid strenuous outdoor activity.", "Use indoor air purifiers if available."],
+    "Moderate": ["Consider a light mask near heavy traffic.", "Limit prolonged outdoor exertion.", "Check levels again before evening commute."],
+    "Low":      ["Air quality is safe — enjoy outdoor activities.", "No special precautions needed today.", "Good time for outdoor exercise."],
+}
+_REPORT_GROUPS = {
+    "High":     "Children, elderly, and people with asthma or heart disease",
+    "Moderate": "People with pre-existing respiratory or cardiovascular conditions",
+    "Low":      "No specific groups at elevated risk",
+}
+
+def _short_pollutant(pollutant_key: str) -> str:
+    if "PM2.5" in pollutant_key: return "PM2.5"
+    if "O₃" in pollutant_key or "O3" in pollutant_key: return "O3"
+    if "NO2" in pollutant_key: return "NO2"
+    return pollutant_key
+
+def _report_level(short_key: str, value: float) -> str:
+    lo, hi = _REPORT_THRESHOLDS.get(short_key, (float("inf"), float("inf")))
+    if value >= hi: return "High"
+    if value >= lo: return "Moderate"
+    return "Low"
+
+def render_neighborhood_report(df: pd.DataFrame, pollutant_key: str):
+    """Render a polished neighborhood health report — no technical jargon."""
+    short = _short_pollutant(pollutant_key)
+    avg   = df["Value"].mean()
+    level = _report_level(short, avg)
+    unit  = df["Unit"].iloc[0] if not df.empty else ""
+    risk_color = {"High": "#ff4d4d", "Moderate": "#f5c400", "Low": "#00d97e"}.get(level, "#f5c400")
+    icon       = {"High": "🔴", "Moderate": "🟡", "Low": "🟢"}.get(level, "🟡")
+
+    # ── Overall risk banner ──────────────────────────────────────────────────
+    st.markdown(
+        f'<div class="report-card" style="border-left: 4px solid {risk_color}; padding: 1.6rem 1.8rem;">'
+        f'<h4 style="margin-bottom:0.8rem;">Overall Air Quality</h4>'
+        f'<div style="display:flex; align-items:baseline; gap:0.8rem;">'
+        f'  <span style="font-size:2rem; font-weight:800; color:{risk_color};">{icon} {level} Risk</span>'
+        f'</div>'
+        f'<p style="margin-top:0.6rem; color:#8891b5 !important; font-size:0.9rem;">'
+        f'  Average {short}: <strong style="color:#dde;">{avg:.1f} {unit}</strong> &nbsp;·&nbsp; {len(df)} sensors monitored'
+        f'</p>'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
+    col1, col2 = st.columns(2)
+
+    # ── Who is at risk ───────────────────────────────────────────────────────
+    with col1:
+        st.markdown(
+            f'<div class="report-card" style="min-height:140px;">'
+            f'<h4>Who Should Take Precautions</h4>'
+            f'<p style="font-size:0.95rem; line-height:1.6;">{_REPORT_GROUPS[level]}</p>'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+
+    # ── Actions ──────────────────────────────────────────────────────────────
+    with col2:
+        actions_html = "".join(
+            f'<div style="display:flex; gap:0.6rem; margin-bottom:0.5rem;">'
+            f'  <span style="color:{risk_color}; flex-shrink:0;">▸</span>'
+            f'  <span style="font-size:0.9rem;">{a}</span>'
+            f'</div>'
+            for a in _REPORT_ACTIONS[level]
+        )
+        st.markdown(
+            f'<div class="report-card" style="min-height:140px;">'
+            f'<h4>What To Do Now</h4>'
+            f'{actions_html}'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+
+    # ── Top hotspots — build entire card as one string ───────────────────────
+    top = df.nlargest(5, "Value")[["Location", "Value", "Unit"]]
+    rows_html = ""
+    for _, r in top.iterrows():
+        c = {"High": "#ff4d4d", "Moderate": "#f5c400", "Low": "#00d97e"}.get(_report_level(short, r["Value"]), "#f5c400")
+        rows_html += (
+            f'<div style="display:flex; justify-content:space-between; align-items:center;'
+            f'     padding:0.55rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">'
+            f'  <span style="font-size:0.9rem; color:#ccd;">{r["Location"]}</span>'
+            f'  <span style="font-size:0.9rem; font-weight:600; color:{c};">{r["Value"]:.1f} {r["Unit"]}</span>'
+            f'</div>'
+        )
+    st.markdown(
+        f'<div class="report-card">'
+        f'<h4>Pollution Hotspots Near You</h4>'
+        f'{rows_html}'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
 
 def render_dashboard(df: pd.DataFrame, pollutant_key: str, lat: float, lon: float, ai_choice: str):
     config = get_pollutant_config()
     unit = config.get(pollutant_key, {}).get("unit", "")
-    
+
     if df.empty:
-        st.warning("No sensors found in this area. Try increasing the Radius.")
+        st.markdown(
+            '<div class="advice-box advice-yellow"><h3 style="margin-top:0;">📡 No Sensors Found</h3>'
+            '<p>No monitoring stations were detected in this area. Try <strong>increasing the search radius</strong> or adjusting your coordinates.</p></div>',
+            unsafe_allow_html=True,
+        )
         return
 
-    c1, c2, c3 = st.columns(3)
-    c1.markdown(f'<div class="metric-card"><div class="metric-label">Avg Level</div><div class="metric-value">{df["Value"].mean():.1f} {unit}</div></div>', unsafe_allow_html=True)
-    c2.markdown(f'<div class="metric-card"><div class="metric-label">Peak Hotspot</div><div class="metric-value">{df["Value"].max():.1f} {unit}</div></div>', unsafe_allow_html=True)
-    c3.markdown(f'<div class="metric-card"><div class="metric-label">Cleanest Spot</div><div class="metric-value">{df["Value"].min():.1f} {unit}</div></div>', unsafe_allow_html=True)
+    avg_val = df["Value"].mean()
+    badge_html = _risk_badge(pollutant_key, avg_val)
 
-    # JSON Parsing & Table Rendering
-    if ai_choice == "None (Static Rules)":
-        advice_text, css_class = get_commuter_advice(pollutant_key, df["Value"].mean())
-        st.markdown(f'<div class="advice-box {css_class}"><h3 style="margin-top:0;">🚦 Commuter Guide</h3><p>{advice_text}</p></div>', unsafe_allow_html=True)
-    elif ai_choice == "OpenAI (GPT-4o)":
-        with st.spinner(f"Querying {ai_choice} for JSON structured insights..."):
-            ai_response_str = get_ai_insights(df, pollutant_key, ai_choice)
-        
+    # ── Metric row ────────────────────────────────────────────��─────────────
+    c1, c2, c3, c4 = st.columns(4)
+    c1.markdown(
+        f'<div class="metric-card"><div class="metric-label">Avg Level</div>'
+        f'<div class="metric-value">{avg_val:.1f}</div>'
+        f'<div class="metric-sub">{unit} &nbsp;{badge_html}</div></div>',
+        unsafe_allow_html=True,
+    )
+    c2.markdown(
+        f'<div class="metric-card"><div class="metric-label">Peak Hotspot</div>'
+        f'<div class="metric-value">{df["Value"].max():.1f}</div>'
+        f'<div class="metric-sub">{unit}</div></div>',
+        unsafe_allow_html=True,
+    )
+    c3.markdown(
+        f'<div class="metric-card"><div class="metric-label">Cleanest Spot</div>'
+        f'<div class="metric-value">{df["Value"].min():.1f}</div>'
+        f'<div class="metric-sub">{unit}</div></div>',
+        unsafe_allow_html=True,
+    )
+    c4.markdown(
+        f'<div class="metric-card"><div class="metric-label">Sensors Found</div>'
+        f'<div class="metric-value">{len(df)}</div>'
+        f'<div class="metric-sub">within radius</div></div>',
+        unsafe_allow_html=True,
+    )
+
+    # ── Health insight panel ─────────────────────────────────────────────────
+    if ai_choice == "Instant Check":
+        advice_text, css_class = get_commuter_advice(pollutant_key, avg_val)
+        st.markdown(
+            f'<div class="advice-box {css_class}">'
+            f'<h3 style="margin-top:0;">🚦 Commuter Guide</h3><p>{advice_text}</p></div>',
+            unsafe_allow_html=True,
+        )
+
+    elif ai_choice == "GPT-4o Analysis":
+        with st.spinner("Querying GPT-4o for structured health insights..."):
+            ai_response_str = get_ai_insights(df, pollutant_key, "OpenAI (GPT-4o)")
         try:
-            # Parse the string returned by the LLM into a Python dictionary
             ai_data = json.loads(ai_response_str)
-            
             if "error" in ai_data:
                 st.error(ai_data["error"])
             else:
-                st.markdown(f"""
-                    <div class="advice-box advice-ai">
-                        <h3 style="margin-top:0;">🤖 AI Health Analysis ({ai_choice})</h3>
-                        <table class="ai-table">
-                            <tr>
-                                <th>Risk Level</th>
-                                <td style="font-weight: bold; color: #fff;">{ai_data.get('risk_level', 'N/A')}</td>
-                            </tr>
-                            <tr>
-                                <th>Clinical Summary</th>
-                                <td>{ai_data.get('summary', 'N/A')}</td>
-                            </tr>
-                            <tr style="border-bottom: none;">
-                                <th>Actionable Tip</th>
-                                <td>{ai_data.get('actionable_tip', 'N/A')}</td>
-                            </tr>
-                        </table>
-                    </div>
-                """, unsafe_allow_html=True)
+                risk = ai_data.get("risk_level", "N/A")
+                st.markdown(
+                    f'<div class="advice-box advice-ai">'
+                    f'<h3 style="margin-top:0;">🤖 AI Health Analysis <span style="font-size:0.8rem;font-weight:400;color:#a090f0;">GPT-4o</span></h3>'
+                    f'<table class="ai-table">'
+                    f'<tr><th>Risk Level</th><td><strong>{risk}</strong></td></tr>'
+                    f'<tr><th>Clinical Summary</th><td>{ai_data.get("summary", "N/A")}</td></tr>'
+                    f'<tr><th>Actionable Tip</th><td>{ai_data.get("actionable_tip", "N/A")}</td></tr>'
+                    f'</table></div>',
+                    unsafe_allow_html=True,
+                )
         except json.JSONDecodeError:
-            st.error("⚠️ The AI model failed to return valid JSON.")
-            st.write("Raw Output:", ai_response_str)
+            st.error("The AI model returned invalid JSON.")
+            st.code(ai_response_str, language="text")
 
-    st.write("") 
-    tab_map, tab_data, tab_rag = st.tabs(["🗺️ Live Map", "📊 Data Table", "🧬 RAG Analysis"])
-    
+    # ── Tabs ─────────────────────────────────────────────────────────────────
+    st.markdown("<div style='margin-top:1.5rem;'></div>", unsafe_allow_html=True)
+    tab_report, tab_map, tab_data, tab_clinical, tab_rag = st.tabs(["📋 Neighborhood Report", "🗺️ Live Map", "📊 Data Table", "🩺 Clinical Notes", "🧬 RAG Analysis"])
+
+    with tab_report:
+        render_neighborhood_report(df, pollutant_key)
+
     with tab_map:
-        if GOOGLE_MAPS_API_KEY: render_google_map(df, lat, lon)
-        else: st.map(df, width='stretch')
-    
-    with tab_data: 
-        st.dataframe(df[["Location", "Value", "Unit", "Time"]], width='stretch')
-    
+        if GOOGLE_MAPS_API_KEY:
+            render_google_map(df, lat, lon)
+        else:
+            st.caption("Google Maps API key not set — using built-in map.")
+            st.map(df, use_container_width=True)
+
+    with tab_data:
+        st.dataframe(
+            df[["Location", "Value", "Unit", "Time"]].sort_values("Value", ascending=False),
+            use_container_width=True,
+            hide_index=True,
+        )
+
+    with tab_clinical:
+        cfg = config.get(pollutant_key, {})
+        st.subheader(cfg.get("clinical_title", "Clinical Notes"))
+        st.markdown(cfg.get("clinical_text", "No clinical notes available."))
+
     with tab_rag:
-        if ai_choice == "RAG + Ollama (Knowledge Base)":
-            st.subheader("🧬 RAG-Powered Health Analysis")
-            st.markdown("*Retrieval-Augmented Generation: Combining knowledge base with current air quality data*")
-            
-            with st.spinner("Retrieving health knowledge and analyzing..."):
+        if ai_choice == "Research Mode":
+            st.subheader("🧬 RAG Health Analysis")
+            st.caption("Retrieval-Augmented Generation: combining a curated knowledge base with live sensor data.")
+            with st.spinner("Retrieving health knowledge and generating recommendations..."):
                 kb_path = os.path.join(os.path.dirname(__file__), "air_quality_knowledge_base.txt")
                 rag_result = get_rag_health_insights(df, pollutant_key, kb_path, "Ollama")
-            
-            st.markdown(f'<div class="advice-box advice-ai"><h3 style="margin-top:0;">💡 Knowledge-Based Recommendations</h3></div>', unsafe_allow_html=True)
-            
-            formatted_response = format_rag_response(rag_result)
-            st.markdown(formatted_response)
+            st.markdown(
+                '<div class="advice-box advice-ai"><h3 style="margin-top:0;">💡 Knowledge-Based Recommendations</h3></div>',
+                unsafe_allow_html=True,
+            )
+            st.markdown(format_rag_response(rag_result))
         else:
-            st.info("💡 Select 'RAG + Ollama (Knowledge Base)' from the sidebar to enable RAG analysis.")
+            st.info("Select **Research Mode** from the sidebar to enable this analysis.")
 
 # -----------------------------------------------------------------------------
 # 5. MAIN EXECUTION
@@ -314,12 +520,20 @@ def render_dashboard(df: pd.DataFrame, pollutant_key: str, lat: float, lon: floa
 
 def main():
     configure_page()
-    st.title("Gotham: NYC Air-Pulse")
-    
+
+    st.markdown(
+        '<div class="hero-header">'
+        '<div class="hero-title">Gotham: NYC Air-Pulse 🏙️</div>'
+        '<div class="hero-sub">Real-time air quality monitoring for NYC commuters · Powered by OpenAQ</div>'
+        '</div>',
+        unsafe_allow_html=True,
+    )
+
     lat, lon, radius, pollutant, ai_choice = render_sidebar()
-    with st.spinner("Analyzing atmospheric data..."):
+
+    with st.spinner("Fetching sensor data..."):
         df, _ = fetch_air_quality_data(lat, lon, radius, pollutant)
-    
+
     render_dashboard(df, pollutant, lat, lon, ai_choice)
 
 if __name__ == "__main__":
