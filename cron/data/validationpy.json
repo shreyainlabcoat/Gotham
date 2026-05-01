@@ -1,0 +1,23 @@
+{
+  "metro_id": 948,
+  "test_rmse": 10.955392723338388,
+  "test_r_squared": 0.03726767602212,
+  "train_rmse": 10.012015883720311,
+  "train_r_squared": 0.12955512385665224,
+  "residual_standard_error_default": 10.955392723338388,
+  "standard_error_method": "Residual SD on held-out test split by day_of_week/hour_of_day; fallback to test RMSE.",
+  "standard_error_by_hour_day": [
+    {
+      "day_of_week": 4,
+      "hour_of_day": 12,
+      "standard_error": 6.8068592855540455,
+      "n": 4
+    },
+    {
+      "day_of_week": 5,
+      "hour_of_day": 14,
+      "standard_error": 14.060583202698243,
+      "n": 5
+    }
+  ]
+}
