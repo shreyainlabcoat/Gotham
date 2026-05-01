@@ -1,0 +1,38 @@
+name: Ingest Brussels Traffic (Python)
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # every hour at :00
+  workflow_dispatch:        # allow manual runs from Actions tab
+
+jobs:
+  ingest_python:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write       # needed to push the updated traffic.db back
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: cron/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r cron/requirements.txt
+
+      - name: Run ingestion script
+        run: python cron/01_ingest_traffic.py
+
+      - name: Commit updated database
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add cron/data/traffic.db
+          git diff --cached --quiet || git commit -m "chore: ingest Brussels traffic [skip ci]"
+          git push
